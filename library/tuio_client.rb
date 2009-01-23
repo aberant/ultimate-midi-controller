@@ -1,13 +1,13 @@
-require 'rubygems'
-require 'osc'
+# require 'rubygems'
+require 'library/osc-0.1.4/lib/osc'
 
 class TUIOClient
+  include OSC
   def initialize(args = { })
     @host = args[:host] || 'localhost'
     @port = args[:port] || 3333
     
-    @osc = OSC::UDPServer.new
-    @osc.bind @host, @port
+    @osc = OSC::SimpleServer.new(@port)
     
     @tuio_objects = { }
     @tuio_cursors = { }
@@ -30,10 +30,11 @@ class TUIOClient
     # end
     
     @osc.add_method '/tuio/2Dobj', nil do |msg|
-      case msg.args.first
+      # puts msg.to_a.inspect
+      case msg.to_a.first
       when "set"
-        # puts msg.args.last(10).inspect
-        update_tuio_objects obj_args_to_hash(*msg.args.last(10))
+        args = msg.to_a.last(10)
+        update_tuio_objects obj_args_to_hash(*args)
       when "alive"
       end
       # update_tuio_objects obj_args_to_hash(*msg.args)
@@ -51,7 +52,7 @@ class TUIOClient
   end
   
   def start
-    @osc.serve
+    @osc.run
   end
   
   def tuio_objects
@@ -99,7 +100,8 @@ private
                         angle_move,
                         motion_acc,
                         rotation_acc )
-    
+                        
+                        
     { :session_id      => session_id,
       :class_id        => class_id,
       :x_pos           => x_pos,
@@ -111,8 +113,6 @@ private
       :motion_acc      => motion_acc,
       :rotation_acc    => rotation_acc
     }
-  
-  
   end
   
   def update_tuio_objects( args )
