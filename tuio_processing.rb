@@ -4,10 +4,11 @@ require 'library/tuio_client'
 require 'library/midiator/lib/midiator'
 
 class MySketch < Processing::App
+  # load_java_library "mmj"
   
   def setup
-    @midi = MIDIator::Interface.new
-    @midi.autodetect_driver
+    # @midi = MIDIator::Interface.new
+    # @midi.autodetect_driver
     
     @tc = TUIOClient.new
     
@@ -18,6 +19,11 @@ class MySketch < Processing::App
 
   def draw
     @tc.tuio_objects.each do |k, v|
+      
+      # midi_value = (v[:angle] / (2 * Math::PI) * 127)
+      # puts midi_value
+      # @midi.control_change(  )
+      
       x = (width  * v[:x_pos]).to_i
       y = (height * v[:y_pos]).to_i
       size = v[:angle] * 25
