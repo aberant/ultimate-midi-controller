@@ -4,11 +4,11 @@ require 'library/tuio_client'
 require 'library/midiator/lib/midiator'
 
 class MySketch < Processing::App
-  # load_java_library "mmj"
+  load_java_library "mmj"
   
   def setup
-    # @midi = MIDIator::Interface.new
-    # @midi.autodetect_driver
+    @midi = MIDIator::Interface.new
+    @midi.autodetect_driver
     
     @tc = TUIOClient.new
     
