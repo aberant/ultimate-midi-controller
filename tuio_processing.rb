@@ -5,7 +5,6 @@ require 'library/midiator/lib/midiator'
 require 'world'
 
 class MySketch < Processing::App
-
   load_java_library "mmj"
   load_ruby_library "control_panel"
   

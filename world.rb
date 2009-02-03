@@ -41,6 +41,13 @@ class Square < Shape
     @y = (@app.height * @tuio_object[:y_pos]).to_i
   end
   
+  def draw
+    draw_square( @x, @y, *RED )
+    draw_square( @x + WIDTH, @y, *BLUE )
+    draw_square( @x + WIDTH*2, @y, *GREEN )
+    
+  end
+  
 private
   
   def intersection?(x, y)
@@ -64,20 +71,8 @@ private
   def green?(x, y)
     x > @x+WIDTH*2 && x < @x+WIDTH*3 && y > @y && y < y+WIDTH
   end
-
-  def draw
-    # @app.fill( *RED )
-    # @app.rect(  @x, @y, WIDTH, WIDTH)
-    draw_square( @x, @y, *RED )
-
-    @app.fill( *BLUE )
-    @app.rect( @x + WIDTH, @y, WIDTH, WIDTH)
-    
-    @app.fill( *GREEN )
-    @app.rect( @x + WIDTH*2, @y, WIDTH, WIDTH)
-  end
   
-  def draw_square( x, y, red, green blue )
+  def draw_square( x, y, red, green, blue )
     @app.fill( red, green, blue )
     @app.rect( x, y, WIDTH, WIDTH)
   end
