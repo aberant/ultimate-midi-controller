@@ -10,15 +10,8 @@ class MySketch < Processing::App
   load_ruby_library "control_panel"
   
   def setup
-    # control_panel do |c|
-    #   c.menu(:channel, *0..16)
-    # 
-    # end
-    
-    # @midi = MIDIator::Interface.new
-    # @midi.autodetect_driver
-
     @world = World.new(self)    
+
     @tc = TUIOClient.new
     
     Thread.new do

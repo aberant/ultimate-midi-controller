@@ -66,13 +66,19 @@ private
   end
 
   def draw
-    @app.fill( *RED )
-    @app.rect(  @x, @y, WIDTH, WIDTH)
+    # @app.fill( *RED )
+    # @app.rect(  @x, @y, WIDTH, WIDTH)
+    draw_square( @x, @y, *RED )
 
     @app.fill( *BLUE )
     @app.rect( @x + WIDTH, @y, WIDTH, WIDTH)
     
     @app.fill( *GREEN )
     @app.rect( @x + WIDTH*2, @y, WIDTH, WIDTH)
+  end
+  
+  def draw_square( x, y, red, green blue )
+    @app.fill( red, green, blue )
+    @app.rect( x, y, WIDTH, WIDTH)
   end
 end
