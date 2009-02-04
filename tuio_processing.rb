@@ -1,5 +1,7 @@
 require 'ruby-processing'
 require 'world'
+require 'shape'
+require 'square'
 
 class MySketch < Processing::App
   load_ruby_library "control_panel"
@@ -14,11 +16,9 @@ class MySketch < Processing::App
     Thread.new do
       @tc.start
     end
-    
   end
 
   def draw
-    
     @tc.tuio_objects.each do |k, v|
 
       @world.draw( v )
