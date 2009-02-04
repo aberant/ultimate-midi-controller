@@ -1,12 +1,10 @@
 require 'ruby-processing'
-require 'library/osc-0.1.4/lib/osc'
-require 'library/tuio_client'
-require 'library/midiator/lib/midiator'
 require 'world'
 
 class MySketch < Processing::App
-  load_java_library "mmj"
   load_ruby_library "control_panel"
+  load_ruby_library "tuio_client"
+  load_ruby_library "midiator"
   
   def setup
     @world = World.new(self)    

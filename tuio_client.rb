@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'osc'
+require 'osc/osc'
 
 class TUIOClient
   def initialize(args = { })

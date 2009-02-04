@@ -1,5 +1,6 @@
-# require 'rubygems'
-require 'library/osc-0.1.4/lib/osc'
+#written by colin harris
+
+require File.join(File.dirname(__FILE__), 'osc/osc')
 
 class TUIOClient
   include OSC
