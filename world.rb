@@ -10,9 +10,9 @@ class World
     thing.draw
   end
   
-  def click(x, y)
+  def click( event )
     @things.values.each do |thing|
-      thing.click(x, y)
+      thing.click( event )
     end
   end
 end

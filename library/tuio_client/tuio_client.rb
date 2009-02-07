@@ -1,10 +1,13 @@
 #written by colin harris
-
 require File.join(File.dirname(__FILE__), 'osc/osc')
 
 class TUIOClient
   include OSC
-  def initialize(args = { })
+  
+  OBJ_ARG_LENGTH = 10
+  CUR_ARG_LENGTH = 6
+  
+  def initialize( args = { } )
     @host = args[:host] || 'localhost'
     @port = args[:port] || 3333
     
@@ -24,32 +27,36 @@ class TUIOClient
     #             angle movement vector(float)
     #             motion acceleration(float) 
     #             rotation acceleration(float)
-        
-    # @osc.add_method '/tuio/2Dobj', 'siiffffffff' do |msg|
-    #   # puts msg.args.inspect
-    #   # update_tuio_objects obj_args_to_hash(*msg.args)
-    # end
     
     @osc.add_method '/tuio/2Dobj', nil do |msg|
       # puts msg.to_a.inspect
       case msg.to_a.first
+        
       when "set"
-        args = msg.to_a.last(10)
-        update_tuio_objects obj_args_to_hash(*args)
+        args = msg.to_a.last( OBJ_ARG_LENGTH )
+        update_tuio_objects( args ) 
       when "alive"
+        args = msg.to_a
+        args.shift
+
+        keep_alive( :tuio_objects, args )
       end
-      # update_tuio_objects obj_args_to_hash(*msg.args)
     end
     
-    # @osc.add_method '/tuio/2Dcur', 'sifffff' do |msg|
-    #   # puts msg.args.inspect
-    #   # update_tuio_cursors cur_args_to_hash(*msg.args)
-    # end
-    
-    # @osc.add_method '/tuio/2Dcur', nil do |msg|
-    #   puts msg.args.inspect
-    #   # keep_alive( *msg.args ) if msg.args.first == "alive"
-    # end
+    @osc.add_method '/tuio/2Dcur', nil do |msg|
+      case msg.to_a.first
+        
+      when "set"
+        args = msg.to_a.last( CUR_ARG_LENGTH)
+        update_tuio_cursors args
+        
+      when "alive"
+        args = msg.to_a
+        args.shift
+        
+        keep_alive( :tuio_cursors, args )
+      end
+    end
   end
   
   def start
@@ -73,64 +80,49 @@ class TUIOClient
   end
   
 private
-  def cur_args_to_hash( set,
-                        session_id,
-                        x_pos,
-                        y_pos,
-                        x_move,
-                        y_move,
-                        motion_acc)
-    raise "whoa not a set!" unless set == "set"
+  def cur_args_to_hash( args )
     {
-      :session_id  => session_id,
-      :x_pos       => x_pos,
-      :y_pos       => y_pos,
-      :x_move      => x_move,
-      :y_move      => y_move,
-      :motion_acc  => motion_acc
+      :session_id  => args[0],
+      :x_pos       => args[1],
+      :y_pos       => args[2],
+      :x_move      => args[3],
+      :y_move      => args[4],
+      :motion_acc  => args[5],
     }
   end
 
-  def obj_args_to_hash( session_id, 
-                        class_id, 
-                        x_pos,
-                        y_pos,
-                        angle,
-                        x_move,
-                        y_move,
-                        angle_move,
-                        motion_acc,
-                        rotation_acc )
-                        
-                        
-    { :session_id      => session_id,
-      :class_id        => class_id,
-      :x_pos           => x_pos,
-      :y_pos           => y_pos,
-      :angle           => angle,
-      :x_move          => x_move,
-      :y_move          => y_move,
-      :angle_move      => angle_move,
-      :motion_acc      => motion_acc,
-      :rotation_acc    => rotation_acc
+  def obj_args_to_hash( args )
+    { :session_id    =>  args[0],
+      :class_id      =>  args[1],
+      :x_pos         =>  args[2],
+      :y_pos         =>  args[3],
+      :angle         =>  args[4],
+      :x_move        =>  args[5],
+      :y_move        =>  args[6],
+      :angle_move    =>  args[7],
+      :motion_acc    =>  args[8],
+      :rotation_acc  =>  args[9],
     }
   end
   
   def update_tuio_objects( args )
-    @tuio_objects[args[:session_id]] = args
+    tuio_object = obj_args_to_hash( args )
+    
+    @tuio_objects[tuio_object[:session_id]] = tuio_object
   end
   
   def update_tuio_cursors( args )
-    @tuio_cursors[args[:session_id]] = args
+    tuio_cursor = cur_args_to_hash( args )
+    @tuio_cursors[tuio_cursor[:session_id]] = tuio_cursor
   end
   
-  def keep_alive( alive, id )
+  def keep_alive( type, session_ids )
+    all_keys = send( type ).keys
     
-    all_keys = tuio_objects.keys
-    dead = all_keys.reject { |key|  id == key }
+    dead = all_keys.reject { |key|  session_ids.include? key }
         
     dead.each do |d|
-      tuio_objects.delete( d )
+      send( type ).delete( d )
     end
   end
 end

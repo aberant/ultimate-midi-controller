@@ -19,11 +19,18 @@ class MySketch < Processing::App
   end
 
   def draw
-    @tc.tuio_objects.each do |k, v|
+    @tc.tuio_objects.each do |session_id, tuio_object|
 
-      @world.draw( v )
+      @world.draw( tuio_object )
 
     end
+    
+    @tc.tuio_cursors.each do |session_id, tuio_cursor|
+      x = ( width  * tuio_cursor[:x_pos] ).to_i
+      y = ( height * tuio_cursor[:y_pos] ).to_i
+      @world.click( x, y )
+    end
+    
     sleep 0.1
   end
   

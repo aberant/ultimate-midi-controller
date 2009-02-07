@@ -176,23 +176,23 @@ module OSC
       @address = address
       @args = []
       args.each_with_index do |arg, i|
-	if tags && tags[i]
-	  case tags[i]
-	  when ?i; @args << OSCInt32.new(arg)
-	  when ?f; @args << OSCFloat32.new(arg)
-	  when ?s; @args << OSCString.new(arg)
-	  when ?b; @args << OSCBlob.new(arg)
-	  when ?*; @args << arg
-	  else; raise ArgumentError, 'unknown type'
-	  end
-	else
-	  case arg
-	  when Integer;     @args << OSCInt32.new(arg)
-	  when Float;       @args << OSCFloat32.new(arg)
-	  when String;      @args << OSCString.new(arg)
-	  when OSCArgument; @args << arg
-	  end
-	end
+      	if tags && tags[i]
+      	  case tags[i]
+      	  when ?i; @args << OSCInt32.new(arg)
+      	  when ?f; @args << OSCFloat32.new(arg)
+      	  when ?s; @args << OSCString.new(arg)
+      	  when ?b; @args << OSCBlob.new(arg)
+      	  when ?*; @args << arg
+      	  else; raise ArgumentError, 'unknown type'
+      	  end
+      	else
+      	  case arg
+      	  when Integer;     @args << OSCInt32.new(arg)
+      	  when Float;       @args << OSCFloat32.new(arg)
+      	  when String;      @args << OSCString.new(arg)
+      	  when OSCArgument; @args << arg
+      	  end
+      	end
       end
     end
 
@@ -285,28 +285,30 @@ module OSC
       when NIL; re = pat
       when Regexp; re = pat
       when String
-	pat = pat.dup
-	pat.gsub!(/[.^(|)]/, '\\1')
-	pat.gsub!(/\?/, '[^/]')
-	pat.gsub!(/\*/, '[^/]*')
-	pat.gsub!(/\[!/, '[^')
-	pat.gsub!(/\{/, '(')
-	pat.gsub!(/,/, '|')
-	pat.gsub!(/\}/, ')')
-	pat.gsub!(/\A/, '\A')
-	pat.gsub!(/\z/, '\z')
-	re = Regexp.new(pat)
+      	pat = pat.dup
+      	pat.gsub!(/[.^(|)]/, '\\1')
+      	pat.gsub!(/\?/, '[^/]')
+      	pat.gsub!(/\*/, '[^/]*')
+      	pat.gsub!(/\[!/, '[^')
+      	pat.gsub!(/\{/, '(')
+      	pat.gsub!(/,/, '|')
+      	pat.gsub!(/\}/, ')')
+      	pat.gsub!(/\A/, '\A')
+      	pat.gsub!(/\z/, '\z')
+      	re = Regexp.new(pat)
       else
-	raise ArgumentError, 'invalid pattern'
+      	raise ArgumentError, 'invalid pattern'
       end
-      unless ( obj && !proc) ||
-	     (!obj &&  proc)
-	raise ArgumentError, 'wrong number of arguments'
+
+      unless ( obj && !proc) ||  (!obj &&  proc)
+	      raise ArgumentError, 'wrong number of arguments'
       end
+      
       @cb << [re, (obj || proc)]
     end
 
     def sendmesg(mesg)
+      # puts mesg.inspect
       @cb.each do |re, obj|
 	      if re.nil? || re =~ mesg.address
 	        obj.send(if Proc === obj then :call else :accept end, mesg)
