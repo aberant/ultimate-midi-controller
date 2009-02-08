@@ -4,6 +4,8 @@ class Square < Shape
   BLUE = [0, 0, 100]
   WIDTH = 20
   
+
+  
   def initialize(app, tuio_object)
     @app = app
     @tuio_object = tuio_object
@@ -20,13 +22,13 @@ class Square < Shape
 private
   
   def intersection?(x, y)
-    x > @x && x < @x+WIDTH*3 && y > @y && y < y+WIDTH
+    x > @x && x < @x+(WIDTH*3) && y > @y && y < y+WIDTH
   end
   
   def handle_click(x, y)
-    puts "RED" if red?(x, y)
-    puts "BLUE" if blue?(x, y)
-    puts "GREEN" if green?(x, y)
+    @app.midi.prev if red?(x, y)
+    @app.midi.play if blue?(x, y)
+    @app.midi.next if green?(x, y)
   end
   
   def red?(x, y)
