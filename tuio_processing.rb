@@ -1,7 +1,7 @@
 require 'ruby-processing'
 require 'world'
-require 'shape'
-require 'square'
+require 'widgets/shape'
+require 'widgets/square'
 
 class MySketch < Processing::App
   load_ruby_library "control_panel"
