@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
-describe "tuio_objects" do
+describe "tuio messages" do
   before :each do
     setup_server
   end
@@ -49,6 +49,7 @@ describe "tuio_cursors" do
     send_message( '/tuio/2Dcur', "alive", 22)
     
     @server.tuio_cursors.size.should == 1
+    @server.tuio_cursors[22][:session_id].should == 22
     
   end
 end

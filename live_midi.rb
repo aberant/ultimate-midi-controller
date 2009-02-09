@@ -1,5 +1,5 @@
 class LiveMidi
-  DELAY = 0.25
+  DELAY = 0.1
   NEXT = 23
   PREV = 21
   PLAY = 24

@@ -63,4 +63,4 @@ end
 
 
 
-MySketch.new :title => "My Sketch", :width => 800, :height => 600
+MySketch.new :title => "My Sketch", :width => 200, :height => 200

@@ -59,7 +59,7 @@ describe "world when drawing" do
     trigger_world_events
   end
   
-  it 'should generate a midi previous command if the red button is clicked' do
+  it 'should generate a midi play command if the blue button is clicked' do
     create_next_prev_play_widget
     
     click_play_button_on_next_prev_play_widget
