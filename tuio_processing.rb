@@ -31,7 +31,7 @@ class MySketch < Processing::App
     
     @world.draw_all @server.tuio_objects
     
-    trigger_world_events
+    @world.click_all( @server.tuio_cursors )
     
     sleep 0.1
   end
@@ -44,18 +44,6 @@ class MySketch < Processing::App
   def midi
     @midi 
   end
-
-private 
-
-  def trigger_world_events
-    @server.tuio_cursors.each do |session_id, tuio_cursor|
-      x = ( SKETCH_WIDTH  * tuio_cursor[:x_pos] ).to_i
-      y = ( SKETCH_HEIGHT * tuio_cursor[:y_pos] ).to_i
-      event = TuioEvent.new(:click, x, y)
-      @world.click( event )
-    end
-  end
-  
 end
 
 

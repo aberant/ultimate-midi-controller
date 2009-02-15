@@ -13,7 +13,18 @@ class World
       draw( tuio_object )
     end
   end
+
+  def click_all( tuio_cursors )
+    tuio_cursors.each do |session_id, tuio_cursor|
+      x = ( @app.width  * tuio_cursor[:x_pos] ).to_i
+      y = ( @app.height * tuio_cursor[:y_pos] ).to_i
+      
+      event = TuioEvent.new(:click, x, y)
+      click( event )
+    end
+  end
   
+  #TODO make me private
   def click( event )
     @things.values.each do |thing|
       thing.click( event )
