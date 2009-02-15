@@ -1,9 +1,9 @@
 class Shape
   def click( event )
-    x, y = event.x, event.y
+    abs_x, abs_y = event.x, event.y
     
-    if intersection?(x, y)
-      handle_click(x, y)
+    if intersection?( abs_x, abs_y )
+      handle_click( abs_x, abs_y )
     end
   end  
   

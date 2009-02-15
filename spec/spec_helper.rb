@@ -39,6 +39,17 @@ def setup_server
   @server = TUIOClient.new
 end
 
+SKETCH_WIDTH = 800
+SKETCH_HEIGHT = 600
+
+def abs_to_rel( abs_x, abs_y )
+  [abs_x / SKETCH_WIDTH.to_f, abs_y / SKETCH_HEIGHT.to_f]
+end
+
+def rel_to_abs( rel_x, rel_y )
+  [rel_x * SKETCH_WIDTH, rel_y * SKETCH_HEIGHT]
+end
+
 def cursor_0_hash
   { :session_id      => 141,
     :class_id        => 0,

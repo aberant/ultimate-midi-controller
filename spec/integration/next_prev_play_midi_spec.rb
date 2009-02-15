@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
-describe "world when drawing" do
+describe "next prev play widget" do
   before :each do
     setup_server
     

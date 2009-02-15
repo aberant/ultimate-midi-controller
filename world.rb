@@ -5,9 +5,12 @@ class World
   end
   
   def draw( tuio_object )
-    thing = Square.new(@app, tuio_object)
-    @things[tuio_object[:class_id]] = thing
-    thing.draw
+    class_id = tuio_object[:class_id]
+    unless @things.has_key?( class_id )
+      @things[class_id] = Square.new(@app, tuio_object)
+    end
+    
+    @things[class_id].draw
   end
   
   def click( event )

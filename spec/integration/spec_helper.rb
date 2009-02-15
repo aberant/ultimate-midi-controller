@@ -5,17 +5,7 @@ require 'widgets/square'
 
 require 'live_midi'
 
-SKETCH_WIDTH = 800
-SKETCH_HEIGHT = 600
 NextPrev_ID = 0
-
-def abs_to_rel( abs_x, abs_y )
-  [abs_x / SKETCH_WIDTH.to_f, abs_y / SKETCH_HEIGHT.to_f]
-end
-
-def rel_to_abs( rel_x, rel_y )
-  [rel_x * SKETCH_WIDTH, rel_y * SKETCH_HEIGHT]
-end
 
 def setup_world
   @app = Object.new
