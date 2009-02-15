@@ -27,6 +27,8 @@ class MySketch < Processing::App
   end
 
   def draw
+    background(255)
+    
     @world.draw_all @server.tuio_objects
     
     trigger_world_events

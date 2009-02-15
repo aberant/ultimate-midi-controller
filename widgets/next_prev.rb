@@ -8,7 +8,6 @@ class NextPrevWidget < Shape
   
   def initialize(app, tuio_object)
     @app = app
-    # @tuio_object = tuio_object
     set_x_y( tuio_object )
   end
   
