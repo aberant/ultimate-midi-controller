@@ -1,9 +1,10 @@
 require 'ruby-processing'
-require 'world'
 require 'widgets/shape'
-require 'widgets/square'
+require 'widgets/next_prev'
+require 'widgets/slider'
 require 'tuio_event'
 require 'live_midi'
+require 'world'
 
 
 class MySketch < Processing::App

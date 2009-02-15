@@ -1,4 +1,4 @@
-class Slider < Shape
+class SliderWidget < Shape
   WIDTH = 20
   HEIGHT = 80
   
@@ -18,7 +18,7 @@ private
   def handle_click( abs_x, abs_y )
     @value  = (( @y + HEIGHT + 1 ) - abs_y) / HEIGHT
     @value = ( @value * 127).to_i
-    @app.midi.slider( @channel, @value )
+    # @app.midi.slider( @channel, @value )
   end
   
   def intersection?(x, y)

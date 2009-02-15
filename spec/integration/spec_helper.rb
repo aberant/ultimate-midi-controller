@@ -2,6 +2,9 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 require 'widgets/shape'
 require 'widgets/next_prev'
+require 'widgets/slider'
+require 'tuio_event'
+require 'world'
 
 require 'live_midi'
 
@@ -40,9 +43,9 @@ def trigger_world_events
   end
 end
 
-def create_next_prev_play_widget
+def create_next_prev_play_widget( x = 300, y = 100)
   # create a next/prev/play object
-  obj_x, obj_y = abs_to_rel(300, 100)
+  obj_x, obj_y = abs_to_rel(x, y)
   send_message( '/tuio/2Dobj', "set", 49, NextPrev_ID, obj_x, obj_y, 3.14, 0.0, 0.0, 0.0, 0.0, 0.0 )
 end
 

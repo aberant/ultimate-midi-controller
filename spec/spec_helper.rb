@@ -47,7 +47,7 @@ def abs_to_rel( abs_x, abs_y )
 end
 
 def rel_to_abs( rel_x, rel_y )
-  [rel_x * SKETCH_WIDTH, rel_y * SKETCH_HEIGHT]
+  [( rel_x * SKETCH_WIDTH ).to_i, ( rel_y * SKETCH_HEIGHT ).to_i]
 end
 
 def cursor_0_hash

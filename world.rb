@@ -1,4 +1,8 @@
 class World
+  CONFIG = { 
+    0 => NextPrevWidget,
+    6 => SliderWidget }
+  
   def initialize( app )
     @app = app
     @things = {}
@@ -16,13 +20,19 @@ class World
     end
   end
   
+  def config
+    CONFIG
+  end
+  
 private 
 
   def draw( tuio_object )
     class_id = tuio_object[:class_id]
   
-    unless already_in_world?( class_id )
-      @things[class_id] = NextPrevWidget.new( @app, tuio_object )
+    if already_in_world?( class_id )
+      @things[class_id].update( tuio_object )
+    else
+      @things[class_id] = CONFIG[class_id].new( @app, tuio_object )
     end
   
     @things[class_id].draw

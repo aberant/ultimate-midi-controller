@@ -8,9 +8,8 @@ class NextPrevWidget < Shape
   
   def initialize(app, tuio_object)
     @app = app
-    @tuio_object = tuio_object
-    @x = ( @app.width  * @tuio_object[:x_pos] ).to_i
-    @y = ( @app.height * @tuio_object[:y_pos] ).to_i
+    # @tuio_object = tuio_object
+    set_x_y( tuio_object )
   end
   
   def draw
@@ -18,6 +17,7 @@ class NextPrevWidget < Shape
     draw_square( @x + WIDTH, @y, *BLUE )
     draw_square( @x + WIDTH*2, @y, *GREEN )
   end
+ 
   
 private
   
