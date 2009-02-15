@@ -37,12 +37,21 @@ describe World do
                     :x_pos           => 0.4,
                     :y_pos           => 0.5,
                   }
-    shape = Square.new( @app, tuio_object )
+    shape = NextPrevWidget.new( @app, tuio_object )
               
-    mock( Square ).new( @app, tuio_object ).times( 1 ) { shape }
+    mock( NextPrevWidget ).new( @app, tuio_object ).times( 1 ) { shape }
+    @world.send( :draw,  tuio_object )
+    @world.send( :draw,  tuio_object )
     
-    @world.draw( tuio_object )
-    @world.draw( tuio_object )
   end
+  
+  # it "should notice the class_id and create the appropriate widget" do
+  #     tuio_object = { :session_id      => 141,
+  #                     :class_id        => 0,
+  #                     :x_pos           => 0.4,
+  #                     :y_pos           => 0.5,
+  #                   }
+  #     
+  # end
 
 end

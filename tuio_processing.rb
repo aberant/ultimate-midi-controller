@@ -26,7 +26,7 @@ class MySketch < Processing::App
   end
 
   def draw
-    draw_world
+    @world.draw_all @server.tuio_objects
     
     trigger_world_events
     
@@ -43,12 +43,6 @@ class MySketch < Processing::App
   end
 
 private 
-
-  def draw_world
-    @server.tuio_objects.each do |session_id, tuio_object|
-      @world.draw( tuio_object )
-    end
-  end
 
   def trigger_world_events
     @server.tuio_cursors.each do |session_id, tuio_cursor|

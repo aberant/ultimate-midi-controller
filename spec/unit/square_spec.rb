@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/spec_helper'
 RED = [100, 0 , 0]
 BLUE = [0, 0, 100]
 GREEN = [0, 100, 0]
-describe Square do
+describe NextPrevWidget do
   it "should be drawn using transforms" do
     app = Object.new
     
@@ -17,25 +17,25 @@ describe Square do
     mock( app ).fill *RED
     mock( app ).rect abs_x, 
                      abs_y, 
-                     Square::WIDTH, 
-                     Square::WIDTH
+                     NextPrevWidget::WIDTH, 
+                     NextPrevWidget::WIDTH
                      
     mock( app ).fill *BLUE                    
-    mock( app ).rect abs_x + Square::WIDTH, 
+    mock( app ).rect abs_x + NextPrevWidget::WIDTH, 
                      abs_y, 
-                     Square::WIDTH, 
-                     Square::WIDTH
+                     NextPrevWidget::WIDTH, 
+                     NextPrevWidget::WIDTH
                      
     mock( app ).fill *GREEN                   
-    mock( app ).rect abs_x + Square::WIDTH * 2, 
+    mock( app ).rect abs_x + NextPrevWidget::WIDTH * 2, 
                      abs_y, 
-                     Square::WIDTH, 
-                     Square::WIDTH
+                     NextPrevWidget::WIDTH, 
+                     NextPrevWidget::WIDTH
     
     tuio_object = { :x_pos => rel_x,
                     :y_pos => rel_y }
                     
-    @square = Square.new( app, tuio_object )
+    @square = NextPrevWidget.new( app, tuio_object )
     
     @square
     

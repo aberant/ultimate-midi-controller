@@ -1,4 +1,4 @@
-class Square < Shape
+class NextPrevWidget < Shape
   RED = [100, 0, 0]
   GREEN = [0, 100, 0]
   BLUE = [0, 0, 100]

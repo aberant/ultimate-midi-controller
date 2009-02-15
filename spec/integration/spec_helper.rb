@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 require 'widgets/shape'
-require 'widgets/square'
+require 'widgets/next_prev'
 
 require 'live_midi'
 
@@ -28,9 +28,7 @@ def setup_midi
 end
 
 def draw_world
-  @server.tuio_objects.each do |session_id, tuio_object|
-    @world.draw( tuio_object )
-  end
+  @world.draw_all @server.tuio_objects
 end
 
 def trigger_world_events
