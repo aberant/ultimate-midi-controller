@@ -7,19 +7,19 @@ class LiveMidi
   MIDI_CHANNEL = 0
   
   def initialize
-    @midi = MIDIator::Interface.new
-    @midi.autodetect_driver
+    @driver = MIDIator::Interface.new
+    @driver.autodetect_driver
   end
   
   def next
-    @midi.play NEXT, DELAY, MIDI_CHANNEL
+    @driver.play NEXT, DELAY, MIDI_CHANNEL
   end          
                
   def play     
-    @midi.play PLAY, DELAY, MIDI_CHANNEL
+    @driver.play PLAY, DELAY, MIDI_CHANNEL
   end          
                
-  def prev     
-    @midi.play PREV, DELAY, MIDI_CHANNEL
+  def prev  
+    @driver.play PREV, DELAY, MIDI_CHANNEL
   end
 end

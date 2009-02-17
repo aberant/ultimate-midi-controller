@@ -2,33 +2,45 @@ require File.dirname(__FILE__) + '/spec_helper'
 
 describe World do
   before :each do
-    @app = Object.new 
+    setup_world
     
-    stub( @app ).width { 800 }
-    stub( @app ).height { 600 }
-    stub( @app ).fill 
-    stub( @app ).rect
-    
-    @world = World.new( @app )
+    setup_midi
   end
   
   it "should click all the objects in the world" do
-    shape_1 = Shape.new
-    shape_2 = Shape.new
+    tuio_object_0 = 
+      { :session_id      => 141,
+        :class_id        => 0,
+        :x_pos           => 0.4,
+        :y_pos           => 0.5,
+      }
+      
+    tuio_object_1 = 
+      { :session_id      => 141,
+        :class_id        => 0,
+        :x_pos           => 0.5,
+        :y_pos           => 0.6,
+      }
+      
+    tuio_click = 
+      { :session_id      => 141,
+        :x_pos           => 0.51,
+        :y_pos           => 0.61,
+      }
     
-    event = TuioEvent.new(:click, 1, 1)
-    
-    mock( shape_1 ).click( event )
-    mock( shape_2 ).click( event )
-    
-    
-    things = { :one => shape_1, 
-               :two => shape_2 
+    things = { :one => tuio_object_0, 
+               :two => tuio_object_1 
               }
+              
+    click = { :one => tuio_click }
     
-    @world.instance_variable_set( :@things, things )
+    @world.draw_all( things )
     
-    @world.click( event )
+    abs_x, abs_y = rel_to_abs( tuio_click[:x_pos], tuio_click[:y_pos])
+    
+    mock.proxy( TuioEvent ).new(:click, abs_x, abs_y).times( 1 ) 
+    
+    @world.click_all( click )
   end
   
   it "should not create a new shape if it already exsists in the world" do
@@ -98,9 +110,6 @@ describe World do
     
     @world.draw_all( world )
     @world.draw_all( world )    
-    
-    
-    
   end
 
 end

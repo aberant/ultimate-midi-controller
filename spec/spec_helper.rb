@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'spec'
+SKETCH_WIDTH = 800
+SKETCH_HEIGHT = 600
 
 VENDOR_ROOT = File.join(File.dirname(__FILE__), "..", "vendor")
 LIB_ROOT = File.join(File.dirname(__FILE__), "..", "library")
@@ -39,8 +41,25 @@ def setup_server
   @server = TUIOClient.new
 end
 
-SKETCH_WIDTH = 800
-SKETCH_HEIGHT = 600
+def setup_world
+  @app = Object.new
+  stub( @app ).width { SKETCH_WIDTH }
+  stub( @app ).height { SKETCH_HEIGHT }
+  stub( @app ).fill
+  stub( @app ).rect
+
+  @world = World.new( @app )
+end
+
+def setup_midi
+  @driver = Object.new
+  stub( @driver ).autodetect_driver
+  stub( @driver ).play
+  stub( MIDIator::Interface ).new { @driver }
+  
+  @midi = LiveMidi.new
+  stub( @app ).midi { @midi }
+end
 
 def abs_to_rel( abs_x, abs_y )
   [abs_x / SKETCH_WIDTH.to_f, abs_y / SKETCH_HEIGHT.to_f]

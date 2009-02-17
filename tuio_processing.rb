@@ -27,7 +27,7 @@ class MySketch < Processing::App
   end
 
   def draw
-    background(255)
+    blank_background
     
     @world.draw_all @server.tuio_objects
     
@@ -43,6 +43,11 @@ class MySketch < Processing::App
   
   def midi
     @midi 
+  end
+  
+private
+  def blank_background
+    background(255)
   end
 end
 

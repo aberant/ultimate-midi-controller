@@ -24,13 +24,6 @@ class World
     end
   end
   
-  #TODO make me private
-  def click( event )
-    @things.values.each do |thing|
-      thing.click( event )
-    end
-  end
-  
   def config
     CONFIG
   end
@@ -47,6 +40,12 @@ private
     end
   
     @things[class_id].draw
+  end
+  
+  def click( event )
+    @things.values.each do |thing|
+      thing.click( event )
+    end
   end
 
   def already_in_world?( class_id )

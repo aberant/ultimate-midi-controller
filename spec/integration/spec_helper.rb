@@ -10,37 +10,12 @@ require 'live_midi'
 
 NextPrev_ID = 0
 
-def setup_world
-  @app = Object.new
-  stub( @app ).width { SKETCH_WIDTH }
-  stub( @app ).height { SKETCH_HEIGHT }
-  stub( @app ).fill
-  stub( @app ).rect
-
-  @world = World.new( @app )
-end
-
-def setup_midi
-  @driver = Object.new
-  stub( @driver ).autodetect_driver
-  
-  mock( MIDIator::Interface ).new { @driver }
-  
-  @midi = LiveMidi.new
-  stub( @app ).midi { @midi }
-end
-
 def draw_world
   @world.draw_all @server.tuio_objects
 end
 
 def trigger_world_events
-  @server.tuio_cursors.each do |session_id, tuio_cursor|
-    x = ( SKETCH_WIDTH  * tuio_cursor[:x_pos] ).to_i
-    y = ( SKETCH_HEIGHT * tuio_cursor[:y_pos] ).to_i
-    event = TuioEvent.new(:click, x, y)
-    @world.click( event )
-  end
+  @world.click_all( @server.tuio_cursors )
 end
 
 def create_next_prev_play_widget( x = 300, y = 100)
