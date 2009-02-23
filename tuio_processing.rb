@@ -15,6 +15,7 @@ class MySketch < Processing::App
   
   
   def setup
+    rect_mode CENTER
     @world = World.new(self)  
       
     @midi = LiveMidi.new
@@ -29,7 +30,7 @@ class MySketch < Processing::App
   def draw
     blank_background
     
-    @world.draw_all @server.tuio_objects
+    @world.draw_all( @server.tuio_objects )
     
     @world.click_all( @server.tuio_cursors )
     

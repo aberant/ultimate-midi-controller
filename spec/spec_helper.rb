@@ -41,12 +41,16 @@ def setup_server
   @server = TUIOClient.new
 end
 
-def setup_world
+def setup_stubbed_world
   @app = Object.new
   stub( @app ).width { SKETCH_WIDTH }
   stub( @app ).height { SKETCH_HEIGHT }
   stub( @app ).fill
   stub( @app ).rect
+  stub( @app ).push_matrix
+  stub( @app ).pop_matrix
+  stub( @app ).rect_mode
+  stub( @app ).rotate
 
   @world = World.new( @app )
 end
@@ -57,7 +61,8 @@ def setup_midi
   stub( @driver ).play
   stub( MIDIator::Interface ).new { @driver }
   
-  @midi = LiveMidi.new
+  @midi = LiveMidi.new 
+  
   stub( @app ).midi { @midi }
 end
 

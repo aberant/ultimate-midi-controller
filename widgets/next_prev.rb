@@ -12,9 +12,13 @@ class NextPrevWidget < Shape
   end
   
   def draw
+    @app.push_matrix
+    
     draw_square( @x, @y, *RED )
     draw_square( @x + WIDTH, @y, *BLUE )
     draw_square( @x + WIDTH*2, @y, *GREEN )
+    
+    @app.pop_matrix
   end
  
   

@@ -4,7 +4,7 @@ describe "next prev play widget" do
   before :each do
     setup_server
     
-    setup_world
+    setup_stubbed_world
     
     setup_midi
   end

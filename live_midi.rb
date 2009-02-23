@@ -22,4 +22,8 @@ class LiveMidi
   def prev  
     @driver.play PREV, DELAY, MIDI_CHANNEL
   end
+  
+  def slider(a, b)
+    
+  end
 end

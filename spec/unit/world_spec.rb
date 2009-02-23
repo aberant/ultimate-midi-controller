@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/spec_helper'
 
 describe World do
   before :each do
-    setup_world
+    setup_stubbed_world
     
     setup_midi
   end

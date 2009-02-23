@@ -17,6 +17,9 @@ describe SliderWidget do
     }
     
     @slider = SliderWidget.new( @gui, tuio_object )
+    @driver = Object.new
+    stub( @gui ).midi { @driver }
+    
   end
   
   it "should be able to draw it self" do
@@ -24,23 +27,38 @@ describe SliderWidget do
   end
   
   it "should call the gui library to draw it's self" do
-    mock( @gui ).rect( @abs_x, @abs_y, SliderWidget::WIDTH, SliderWidget::HEIGHT )
+    mock( @gui ).push_matrix
+    
+    # this means corner not center
+    mock( @gui ).rect_mode( 0 ) 
+    mock( @gui ).rotate( anything )
+    
+    mock( @gui ).fill( *SliderWidget::BACKGROUND )
+    mock( @gui ).rect(  @abs_x, 
+                        @abs_y, 
+                        SliderWidget::WIDTH, 
+                        SliderWidget::HEIGHT 
+                      )
+                      
+    mock( @gui ).fill( *SliderWidget::BAR )
+    mock( @gui ).rect(  @abs_x, 
+                        @abs_y + SliderWidget::HEIGHT, 
+                        SliderWidget::WIDTH, 
+                        SliderWidget::BAR_HEIGHT
+                      )
+    mock( @gui ).pop_matrix
     @slider.draw
   end
       
   it "should have the right value when clicked at the top of the slider" do
-    driver = Object.new
-    stub( driver ).slider( 1 , 127)
-    
-    stub( @gui ).midi { driver }
+    mock( @driver ).slider( 1 , 127)
+        
     @slider.send( :handle_click, @abs_x, @abs_y + 1)
   end
   
-  it "should have the correct value when clicked at the bottome of the slider" do
-    driver = Object.new
-    stub( driver ).slider( 1 , 0)
+  it "should have the correct value when clicked at the bottom of the slider" do
+    mock( @driver ).slider( 1 , 0)
     
-    stub( @gui ).midi { driver }
     @slider.send( :handle_click, @abs_x, @abs_y + SliderWidget::HEIGHT )
   end
   
