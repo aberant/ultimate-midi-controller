@@ -1,8 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
+# Beware the require farm, my son!
+#  The jaws that bite, the claws that catch!
 require 'widgets/shape'
 require 'widgets/next_prev'
 require 'widgets/slider'
+require 'widgets/box'
 require 'tuio_event'
 require 'world'
 

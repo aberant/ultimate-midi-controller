@@ -1,7 +1,8 @@
 class World
   CONFIG = { 
     0 => NextPrevWidget,
-    6 => SliderWidget }
+    6 => SliderWidget,
+    24 => BoxWidget }
   
   def initialize( app )
     @app = app

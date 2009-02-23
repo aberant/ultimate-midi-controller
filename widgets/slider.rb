@@ -23,14 +23,12 @@ class SliderWidget < Shape
     @app.push_matrix
       @app.rect_mode 0
     
-      @app.rotate 0
-    
       @app.fill *BACKGROUND
       @app.rect( @x, @y, WIDTH, HEIGHT )
       
       @app.fill *BAR
-      
       @app.rect( @x, @y + @bar, WIDTH, BAR_HEIGHT )
+      
     @app.pop_matrix
   end
   

@@ -31,7 +31,6 @@ describe SliderWidget do
     
     # this means corner not center
     mock( @gui ).rect_mode( 0 ) 
-    mock( @gui ).rotate( anything )
     
     mock( @gui ).fill( *SliderWidget::BACKGROUND )
     mock( @gui ).rect(  @abs_x, 
