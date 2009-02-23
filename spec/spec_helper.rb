@@ -52,6 +52,7 @@ def setup_stubbed_world
   stub( @app ).rect_mode
   stub( @app ).rotate
 
+  #this is a junk comment
   @world = World.new( @app )
 end
 
