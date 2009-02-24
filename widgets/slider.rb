@@ -1,9 +1,9 @@
 class SliderWidget < Shape
   WIDTH = 20
   HEIGHT = 80
-  BAR_HEIGHT = 2
+  CURSOR_HEIGHT = 2
   BACKGROUND = [0, 255, 0]
-  BAR = [255, 0, 0]
+  CURSOR = [255, 0, 0]
   MIDI_MAX = 127
   MIDI_MIN = 0
   
@@ -16,7 +16,7 @@ class SliderWidget < Shape
     @angle = tuio_object[:angle]
     
     @value = 0
-    @bar = HEIGHT 
+    @cursor = HEIGHT 
   end
   
   def draw
@@ -26,15 +26,15 @@ class SliderWidget < Shape
       @app.fill *BACKGROUND
       @app.rect( @x, @y, WIDTH, HEIGHT )
       
-      @app.fill *BAR
-      @app.rect( @x, @y + @bar, WIDTH, BAR_HEIGHT )
+      @app.fill *CURSOR
+      @app.rect( @x, @y + @cursor, WIDTH, CURSOR_HEIGHT )
       
     @app.pop_matrix
   end
   
 private
   def handle_click( abs_x, abs_y )
-    @bar =  abs_y - @y
+    @cursor =  abs_y - @y
     
     @value  = to_midi_value( abs_y )
     
