@@ -1,8 +1,5 @@
 require 'ruby-processing'
-require 'widgets/shape'
-require 'widgets/next_prev'
-require 'widgets/slider'
-require 'widgets/box'
+
 require 'tuio_event'
 require 'live_midi'
 require 'world'
@@ -56,4 +53,4 @@ end
 
 
 
-MySketch.new :title => "My Sketch", :width => 800, :height => 600
+MySketch.new :title => "My Sketch", :width => 200, :height => 200

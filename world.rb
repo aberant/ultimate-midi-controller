@@ -1,3 +1,9 @@
+require 'widgets/shape'
+require 'widgets/next_prev'
+require 'widgets/slider'
+require 'widgets/box'
+require 'widget_config'
+
 class World
  
   def initialize( app )
@@ -7,7 +13,7 @@ class World
     @config = WidgetConfig.new
     @config.register( 0, NextPrevWidget )
     @config.register( 6, SliderWidget )
-    @config.register( 25, BoxWidget )
+    @config.register( 24, BoxWidget )
   end
   
   def draw_all( tuio_objects )

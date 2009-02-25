@@ -9,21 +9,44 @@ class LiveMidi
   def initialize
     @driver = MIDIator::Interface.new
     @driver.autodetect_driver
+    
+    @config = WidgetConfig.new
+    
+    #play config
+    @config.register( :play, 24 )
+    @config.register( :prev, 21 )
+    @config.register( :next, 23 )
+    @config.register( :play_channel, 0 )
+    
+    #begin slider config
+    @config.register( 0, [0, 0])
+  end
+  
+  def config
+    @config
   end
   
   def next
-    @driver.play NEXT, DELAY, MIDI_CHANNEL
+    @driver.play  @config.fetch(:next), 
+                  DELAY, 
+                  @config.fetch(:play_channel)
   end          
                
   def play     
-    @driver.play PLAY, DELAY, MIDI_CHANNEL
+    @driver.play  @config.fetch(:play), 
+                  DELAY, 
+                  @config.fetch(:play_channel)
   end          
                
   def prev  
-    @driver.play PREV, DELAY, MIDI_CHANNEL
+    @driver.play  @config.fetch(:prev), 
+                  DELAY, 
+                  @config.fetch(:play_channel)
   end
   
-  def slider(a, b)
+  def slider( id, value )
+    cc_number, channel = @config.fetch( id )
     
+    @driver.control_change( cc_number, channel, value )
   end
 end

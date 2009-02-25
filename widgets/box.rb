@@ -30,6 +30,7 @@ private
     end
     
     def intersection?( x, y )
-      (x >= @x - WIDTH && x <= @x + WIDTH && y >= @y - WIDTH && y < @y + WIDTH)
+      half_width = WIDTH / 2
+      (x >= @x - half_width && x <= @x + half_width && y >= @y - half_width && y < @y + half_width)
     end
 end

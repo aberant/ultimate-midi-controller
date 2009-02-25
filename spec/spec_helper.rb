@@ -8,7 +8,7 @@ LIB_ROOT = File.join(File.dirname(__FILE__), "..", "library")
 LIBRARIES = File.join(LIB_ROOT, "*", "*.rb")
 
 Dir[LIBRARIES].each do |lib|
-  require lib
+  require File.expand_path( lib )
 end
 
 require File.join(VENDOR_ROOT, "rr", "lib", "rr") 
