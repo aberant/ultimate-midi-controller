@@ -39,11 +39,11 @@ describe SliderWidget do
                         SliderWidget::HEIGHT 
                       )
                       
-    mock( @gui ).fill( *SliderWidget::BAR )
+    mock( @gui ).fill( *SliderWidget::CURSOR )
     mock( @gui ).rect(  @abs_x, 
                         @abs_y + SliderWidget::HEIGHT, 
                         SliderWidget::WIDTH, 
-                        SliderWidget::BAR_HEIGHT
+                        SliderWidget::CURSOR_HEIGHT
                       )
     mock( @gui ).pop_matrix
     @slider.draw

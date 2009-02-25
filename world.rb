@@ -1,12 +1,13 @@
 class World
-  CONFIG = { 
-    0 => NextPrevWidget,
-    6 => SliderWidget,
-    24 => BoxWidget }
-  
+ 
   def initialize( app )
     @app = app
     @things = {}
+    
+    @config = WidgetConfig.new
+    @config.register( 0, NextPrevWidget )
+    @config.register( 6, SliderWidget )
+    @config.register( 25, BoxWidget )
   end
   
   def draw_all( tuio_objects )
@@ -31,10 +32,6 @@ class World
     end
   end
   
-  def config
-    CONFIG
-  end
-  
 private 
 
   def draw( tuio_object )
@@ -43,7 +40,8 @@ private
     if already_in_world?( class_id )
       @things[class_id].update( tuio_object )
     else
-      @things[class_id] = CONFIG[class_id].new( @app, tuio_object )
+      widget = @config.fetch( class_id )
+      @things[class_id] = widget.new( @app, tuio_object ) if widget
     end
   
     @things[class_id].draw

@@ -57,11 +57,6 @@ describe World do
     
   end
   
-  it "should have a config to list what ids become what objects" do
-    @world.config[0].should == NextPrevWidget
-    @world.config[6].should == SliderWidget
-  end
-  
   it "should notice the class_id and create the appropriate widget" do
     tuio_next_prev_object = 
       { :session_id      => 141,
@@ -100,6 +95,7 @@ describe World do
         :x_pos           => 0.4,
         :y_pos           => 0.5,
       }
+      
     world = { 141 => tuio_next_prev_object }  
     
     next_prev = NextPrevWidget.new( @app, tuio_next_prev_object )

@@ -16,6 +16,7 @@ class MySketch < Processing::App
   
   
   def setup
+    # TODO: get the whole world working with center mode
     rect_mode CENTER
     @world = World.new(self)  
       
@@ -55,4 +56,4 @@ end
 
 
 
-MySketch.new :title => "My Sketch", :width => 200, :height => 200
+MySketch.new :title => "My Sketch", :width => 800, :height => 600
