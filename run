@@ -1,0 +1,3 @@
+#! /bin/bash
+
+rp5 run tuio_processing.rb
