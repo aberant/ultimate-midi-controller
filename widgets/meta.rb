@@ -1,4 +1,6 @@
-class MetaWidget
+require File.expand_path( File.join( File.dirname(__FILE__), "shape"))
+
+class MetaWidget < Shape
   attr_reader :widgets
   attr_reader :title
   
@@ -8,6 +10,8 @@ class MetaWidget
     @app = app
     @tuio = tuio_object
     @title = title
+    @x = tuio_object[:x_pos]
+    @y = tuio_object[:y_pos]
     
     @widgets = []
   end
@@ -22,7 +26,8 @@ class MetaWidget
   
   def draw
     @app.push_matrix
-    
+    @app.fill 255, 0, 0
+    @app.rect(@x, @y, 10, 10)
     @widgets.each do | w |
       w.draw
     end
@@ -36,5 +41,10 @@ class MetaWidget
   
   def my_height
     @widgets.inject(0){ | result, widget | result + widget.height } + PADDING
+  end
+  
+private
+  def intersection?( x,y )
+    false
   end
 end

@@ -16,6 +16,10 @@ describe MetaWidget do
     it 'should implement draw' do
       @meta.should respond_to( :draw )
     end
+    
+    it 'should implement update' do
+      @meta.should respond_to( :update )
+    end
   end
   
   describe 'contains another widget' do

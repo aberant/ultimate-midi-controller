@@ -5,7 +5,6 @@ Dir[widgets].each do |w|
   require  w 
 end
 
-
 class World
  
   def initialize( app )
@@ -48,7 +47,7 @@ private
   
     if already_in_world?( class_id )
       @things[class_id].update( tuio_object )
-    else
+    else # not in world
       widget = @config.fetch( class_id )
       @things[class_id] = widget.new( @app, tuio_object ) if widget
     end
