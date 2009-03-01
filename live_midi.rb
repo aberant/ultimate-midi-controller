@@ -10,16 +10,16 @@ class LiveMidi
     @driver = MIDIator::Interface.new
     @driver.autodetect_driver
     
-    @config = EnvConfig.new
-    
-    #play config
-    @config.register( :play, 24 )
-    @config.register( :prev, 21 )
-    @config.register( :next, 23 )
-    @config.register( :play_channel, 0 )
-    
-    #begin slider config
-    @config.register( 6, [0, 0])
+    @config = EnvConfig.create_config do
+      :play.is 24
+      :prev.is 21
+      :next.is 23
+      :play_channel.is 0
+      
+      # begin slider config
+      # hmm.. the dsl seems to stretch thin here...
+      [0,0].is 6
+    end
   end
   
   def config

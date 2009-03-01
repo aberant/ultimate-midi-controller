@@ -1,4 +1,6 @@
 require 'core_ext/fixnum'
+require 'core_ext/symbol'
+require 'core_ext/array'
 
 class EnvConfig 
   

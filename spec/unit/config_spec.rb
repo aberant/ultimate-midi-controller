@@ -39,5 +39,18 @@ describe EnvConfig do
       @config.fetch( 1 ).should == NextPrevWidget
       @config.fetch( 2 ).should == BoxWidget
     end
+    
+    it 'should be able to accept symbols as keys as well as numbers' do
+      @config = EnvConfig.create_config do
+        1.is NextPrevWidget
+        :play.is 24
+      end
+    end
+    
+    it 'should be able to accept arrays' do
+      @config = EnvConfig.create_config do
+        [0,0].is 6
+      end
+    end
   end
 end
