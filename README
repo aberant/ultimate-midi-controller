@@ -14,8 +14,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Special thanks to all at Obtiva, especially Dave Hoover for help with this.
 
+Requires reacTIVision
+http://mtg.upf.es/reactable/?software
 
-Project requires ruby processing to run.
+Requires ruby processing to run.
 http://wiki.github.com/jashkenas/ruby-processing
 
 run project with the following command:
@@ -25,3 +27,6 @@ uses the following gems which are frozen into the library folder.  some slight m
 osc
 midiator
 platform
+
+http://aberant.tumblr.com
+http://abstractscience.net
