@@ -1,3 +1,5 @@
+require File.expand_path( File.join( File.dirname(__FILE__), "shape"))
+
 class BoxWidget < Shape
   WIDTH = 80
   CENTER = 3

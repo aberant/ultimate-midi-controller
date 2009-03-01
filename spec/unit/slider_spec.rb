@@ -1,5 +1,4 @@
 require File.dirname(__FILE__) + '/spec_helper'
-require 'widgets/slider'
 
 describe SliderWidget do
   before :each do

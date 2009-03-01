@@ -41,6 +41,17 @@ class MySketch < Processing::App
     @world.click( event )
   end
   
+  # def mouse_dragged
+  #   old_x ||= 0
+  #   old_y ||= 0
+  #   
+  #   x, y = mouse_x, mouse_y
+  #   puts "x: #{mouse_x} y: #{mouse_y}"
+  # 
+  #   line x, y, old_x, old_y 
+  #   old_x, old_y = x, y
+  # end
+  
   def midi
     @midi 
   end

@@ -19,7 +19,7 @@ class LiveMidi
     @config.register( :play_channel, 0 )
     
     #begin slider config
-    @config.register( 0, [0, 0])
+    @config.register( 6, [0, 0])
   end
   
   def config

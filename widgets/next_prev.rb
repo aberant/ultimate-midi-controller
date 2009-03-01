@@ -1,3 +1,5 @@
+require File.expand_path( File.join( File.dirname(__FILE__), "shape"))
+
 class NextPrevWidget < Shape
   RED = [100, 0, 0]
   GREEN = [0, 100, 0]

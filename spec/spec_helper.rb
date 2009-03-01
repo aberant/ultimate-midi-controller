@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'spec'
+
 SKETCH_WIDTH = 800
 SKETCH_HEIGHT = 600
 

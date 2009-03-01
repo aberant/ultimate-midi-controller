@@ -1,8 +1,10 @@
-require 'widgets/shape'
-require 'widgets/next_prev'
-require 'widgets/slider'
-require 'widgets/box'
 require 'widget_config'
+
+widgets = File.join( File.dirname(__FILE__), "widgets", "*")
+Dir[widgets].each do |w|
+  require  w 
+end
+
 
 class World
  

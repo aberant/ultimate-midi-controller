@@ -1,3 +1,5 @@
+require File.join( File.dirname(__FILE__), "shape")
+
 class SliderWidget < Shape
   WIDTH = 20
   HEIGHT = 80
