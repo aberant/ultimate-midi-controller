@@ -10,7 +10,7 @@ class LiveMidi
     @driver = MIDIator::Interface.new
     @driver.autodetect_driver
     
-    @config = EvnConfig.new
+    @config = EnvConfig.new
     
     #play config
     @config.register( :play, 24 )

@@ -27,7 +27,7 @@ class MetaWidget < Shape
   def draw
     @app.push_matrix
     @app.fill 255, 0, 0
-    @app.rect(@x, @y, 10, 10)
+    @app.rect(@x, @y, my_width, my_height)
     @widgets.each do | w |
       w.draw
     end

@@ -11,11 +11,12 @@ class World
     @app = app
     @things = {}
     
-    @config = EvnConfig.new
-    @config.register( 0, NextPrevWidget )
-    @config.register( 6, SliderWidget )
-    @config.register( 24, BoxWidget )
-    @config.register( 30, MetaWidget )
+    @config = EnvConfig.create_config do
+      0.is NextPrevWidget
+      6.is SliderWidget
+      24.is BoxWidget
+      30.is MetaWidget
+    end
   end
   
   def draw_all( tuio_objects )

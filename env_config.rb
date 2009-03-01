@@ -1,4 +1,35 @@
-class EvnConfig 
+require 'core_ext/fixnum'
+
+class EnvConfig 
+  
+  class << self
+    def create_config( &blk )
+      clear_all
+      blk.call
+      create_instance
+    end
+
+    def add_config( key, value )
+      @rules[key] = value
+    end
+        
+  private
+    
+    def clear_all
+      @rules = {}
+    end
+
+    def create_instance
+      config = EnvConfig.new
+      @rules.each do | key, value |
+        config.register( key, value )
+      end
+      
+      return config
+    end
+    
+  end # metaclass
+  
   def initialize
     @map = {}
   end
