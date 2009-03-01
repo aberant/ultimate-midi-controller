@@ -16,6 +16,7 @@ class World
     @config.register( 0, NextPrevWidget )
     @config.register( 6, SliderWidget )
     @config.register( 24, BoxWidget )
+    @config.register( 30, MetaWidget )
   end
   
   def draw_all( tuio_objects )

@@ -34,6 +34,14 @@ class SliderWidget < Shape
     @app.pop_matrix
   end
   
+  def width
+    WIDTH
+  end
+  
+  def height
+    HEIGHT
+  end
+  
 private
   def handle_click( abs_x, abs_y )
     @cursor =  abs_y - @y

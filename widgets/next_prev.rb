@@ -22,7 +22,14 @@ class NextPrevWidget < Shape
     
     @app.pop_matrix
   end
- 
+  
+  def width
+    WIDTH
+  end
+  
+  def height
+    HEIGHT
+  end
   
 private
   

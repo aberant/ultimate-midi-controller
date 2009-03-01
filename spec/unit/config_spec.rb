@@ -19,13 +19,4 @@ describe WidgetConfig do
     @config.has_key?( 1 ).should == true
     @config.has_key?( 2 ).should == false
   end
-  
-  it "should allow you to map a single value with dsl" do
-    pending
-    @config.map_widgets do
-      1.is BoxWidget
-    end
-    
-    @config.fetch( 1 ).should == BoxWidget
-  end
 end

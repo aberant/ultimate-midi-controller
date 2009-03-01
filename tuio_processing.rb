@@ -6,7 +6,7 @@ require 'world'
 
 
 class MySketch < Processing::App
-  load_ruby_library "control_panel"
+  # load_ruby_library "control_panel"
   load_ruby_library "tuio_client"
   load_java_library "mmj"
   load_ruby_library "midiator"
@@ -15,6 +15,9 @@ class MySketch < Processing::App
   def setup
     # TODO: get the whole world working with center mode
     rect_mode CENTER
+    font = loadFont("monaco-18.vlw")
+    textFont(font)
+    
     @world = World.new(self)  
       
     @midi = LiveMidi.new

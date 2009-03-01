@@ -2,6 +2,7 @@ require File.expand_path( File.join( File.dirname(__FILE__), "shape"))
 
 class BoxWidget < Shape
   WIDTH = 80
+  HEIGHT = WIDTH
   CENTER = 3
   BACKGROUND = [75, 75, 75]
   CURSOR = [76,	224, 230]
@@ -23,6 +24,14 @@ class BoxWidget < Shape
         @app.ellipse( @cursor[:x], @cursor[:y], CURSOR_WIDTH, CURSOR_WIDTH )
       end
     @app.pop_matrix
+  end
+  
+  def width
+    WIDTH
+  end
+  
+  def height
+    HEIGHT
   end
   
 private

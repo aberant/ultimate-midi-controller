@@ -19,7 +19,6 @@ class Shape
   def location
     [@x, @y]
   end 
-
   
   # derivatives should implement
   # draw, intersection, handle_click
