@@ -1,6 +1,4 @@
-require 'core_ext/fixnum'
-
-class WidgetConfig
+class EvnConfig 
   def initialize
     @map = {}
   end

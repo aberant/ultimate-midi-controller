@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
-describe WidgetConfig do
+describe EvnConfig do
   before :each do
-    @config = WidgetConfig.new
+    @config = EvnConfig.new
   end
   
   it "should be able to register keys and classes" do

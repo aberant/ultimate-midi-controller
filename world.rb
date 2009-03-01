@@ -1,4 +1,4 @@
-require 'widget_config'
+require 'env_config'
 
 widgets = File.join( File.dirname(__FILE__), "widgets", "*")
 Dir[widgets].each do |w|
@@ -11,7 +11,7 @@ class World
     @app = app
     @things = {}
     
-    @config = WidgetConfig.new
+    @config = EvnConfig.new
     @config.register( 0, NextPrevWidget )
     @config.register( 6, SliderWidget )
     @config.register( 24, BoxWidget )
