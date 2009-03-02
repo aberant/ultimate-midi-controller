@@ -1,6 +1,9 @@
-require 'core_ext/fixnum'
-require 'core_ext/symbol'
-require 'core_ext/array'
+widgets = File.join( File.dirname(__FILE__), "core_ext", "*")
+
+Dir[widgets].each do |w|
+  require  w 
+end
+
 
 class EnvConfig 
   
@@ -15,7 +18,7 @@ class EnvConfig
       @rules[key] = value
     end
         
-  private
+  private # class methods
     
     def clear_all
       @rules = {}

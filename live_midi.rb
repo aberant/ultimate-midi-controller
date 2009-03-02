@@ -11,10 +11,10 @@ class LiveMidi
     @driver.autodetect_driver
     
     @config = EnvConfig.create_config do
-      :play.is 24
-      :prev.is 21
-      :next.is 23
-      :play_channel.is 0
+      :play.is PLAY
+      :prev.is PREV
+      :next.is NEXT
+      :play_channel.is MIDI_CHANNEL
       
       # begin slider config
       # hmm.. the dsl seems to stretch thin here...
