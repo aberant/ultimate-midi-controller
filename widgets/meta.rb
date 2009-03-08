@@ -28,6 +28,7 @@ class MetaWidget < Shape
     @app.push_matrix
     @app.fill 255, 0, 0
     @app.rect(@x, @y, my_width, my_height)
+    
     @widgets.each do | w |
       w.draw
     end
@@ -44,6 +45,7 @@ class MetaWidget < Shape
   end
   
 private
+  
   def intersection?( x,y )
     false
   end
