@@ -21,7 +21,7 @@ Requires ruby processing to run.
 http://wiki.github.com/jashkenas/ruby-processing
 
 run project with the following command:
-rp5 run tuio_processing.rb
+script/run
 
 uses the following gems which are frozen into the library folder.  some slight modifications were made to them to work with this project.
 osc

@@ -49,4 +49,11 @@ class LiveMidi
     
     @driver.control_change( cc_number, channel, value )
   end
+  
+  def box( id, x_value, y_value )
+    x_cc_number, y_cc_number, channel = @config.fetch( id )
+    
+    @driver.control_change( x_cc_number, channel, x_value )
+    @driver.control_change( y_cc_number, channel, y_value )
+  end
 end

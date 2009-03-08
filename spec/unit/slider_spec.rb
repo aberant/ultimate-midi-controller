@@ -15,15 +15,14 @@ describe SliderWidget do
       :class_id => 1
     }
     
-    @slider = SliderWidget.new( @gui, tuio_object )
+    @widget = SliderWidget.new( @gui, tuio_object )
     @driver = Object.new
     stub( @gui ).midi { @driver }
     
   end
   
-  it "should be able to draw it self" do
-    @slider.should respond_to( :draw )
-  end
+  it_should_behave_like "basic shape"
+  
   
   it "should call the gui library to draw it's self" do
     mock( @gui ).push_matrix
@@ -45,23 +44,23 @@ describe SliderWidget do
                         SliderWidget::CURSOR_HEIGHT
                       )
     mock( @gui ).pop_matrix
-    @slider.draw
+    @widget.draw
   end
       
   it "should have the right value when clicked at the top of the slider" do
     mock( @driver ).slider( 1 , 127)
         
-    @slider.send( :handle_click, @abs_x, @abs_y + 1)
+    @widget.send( :handle_click, @abs_x, @abs_y + 1)
   end
   
   it "should have the correct value when clicked at the bottom of the slider" do
     mock( @driver ).slider( 1 , 0)
     
-    @slider.send( :handle_click, @abs_x, @abs_y + SliderWidget::HEIGHT )
+    @widget.send( :handle_click, @abs_x, @abs_y + SliderWidget::HEIGHT )
   end
   
   it "should not care about things clicked beyond the slider" do
-    @slider.send(:intersection?, @abs_x, @abs_y + SliderWidget::HEIGHT + 10 ).should be_false
+    @widget.send(:intersection?, @abs_x, @abs_y + SliderWidget::HEIGHT + 10 ).should be_false
   end
   
 end

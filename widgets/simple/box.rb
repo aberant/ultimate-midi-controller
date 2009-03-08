@@ -12,6 +12,7 @@ class BoxWidget < Shape
     @app = app
     @x = ( tuio_object[:x_pos] * @app.width ).to_i
     @y = ( tuio_object[:y_pos] * @app.height ).to_i
+    @class_id = tuio_object[:class_id]
   end
   
   def draw
@@ -36,8 +37,12 @@ class BoxWidget < Shape
   
 private
     def handle_click( x, y )
+      set_cursor( x, y )
+      @app.midi.box( @class_id, x, y, WIDTH, HEIGHT )
+    end
+    
+    def set_cursor( x, y )
       @cursor = {:x => x, :y => y}
-        
     end
     
     def intersection?( x, y )
