@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
+APP_ROOT = File.join( File.dirname( __FILE__ ), "..")
 
 irb = RUBY_PLATFORM =~ /(:?mswin|mingw)/ ? 'irb.bat' : 'irb'
 
 libs =  " -r irb/completion"
 # Perhaps use a console_lib to store any extra methods I may want available in the cosole
-libs <<  " -r #{File.dirname(__FILE__) + '/../world.rb'}"
+libs <<  " -r #{APP_ROOT + '/lib/world.rb'}"
 puts "Loading world"
 exec "#{irb} #{libs} --simple-prompt"

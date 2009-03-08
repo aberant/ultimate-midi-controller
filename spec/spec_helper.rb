@@ -1,15 +1,23 @@
 require 'rubygems'
 require 'spec'
 
+APP_ROOT = File.join( File.dirname( __FILE__ ), "..")
+
 SKETCH_WIDTH = 800
 SKETCH_HEIGHT = 600
 
-VENDOR_ROOT = File.join(File.dirname(__FILE__), "..", "vendor")
-LIB_ROOT = File.join(File.dirname(__FILE__), "..", "library")
-LIBRARIES = File.join(LIB_ROOT, "*", "*.rb")
+VENDOR_ROOT = File.join( APP_ROOT , "vendor")
+SKETCH_LIB_ROOT = File.join( APP_ROOT , "library")
+SKETCH_LIBRARIES = File.join(SKETCH_LIB_ROOT, "*", "*.rb")
+RUBY_LIBRARIES = File.join( APP_ROOT, "lib", "*.rb" )
 
-Dir[LIBRARIES].each do |lib|
+Dir[SKETCH_LIBRARIES].each do |lib|
   require File.expand_path( lib )
+end
+
+
+Dir[RUBY_LIBRARIES].each do | rlib |
+  require rlib
 end
 
 require File.join(VENDOR_ROOT, "rr", "lib", "rr") 

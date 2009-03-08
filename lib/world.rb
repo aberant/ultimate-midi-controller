@@ -1,6 +1,11 @@
-require 'env_config'
+# TODO: setup some environment file like in rails
+# so that we can setup some program wide constants
+# like app_root and such, which changes for test, and script/console
+APP_ROOT = File.join( File.dirname( __FILE__ ), "..") unless defined? APP_ROOT
 
-widgets = File.join( File.dirname(__FILE__), "widgets", "*")
+require File.join( APP_ROOT, 'lib', 'env_config' )
+
+widgets = File.join( APP_ROOT, 'widgets', 'simple', '*')
 Dir[widgets].each do |w|
   require  w 
 end

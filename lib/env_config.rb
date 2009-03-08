@@ -1,4 +1,4 @@
-widgets = File.join( File.dirname(__FILE__), "core_ext", "*")
+widgets = File.join( APP_ROOT, "core_ext", "*")
 
 Dir[widgets].each do |w|
   require  w 

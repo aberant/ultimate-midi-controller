@@ -1,19 +1,17 @@
 require 'ruby-processing'
+APP_ROOT = File.dirname( __FILE__ )
 
-require 'tuio_event'
-require 'live_midi'
-require 'world'
-
+Dir[File.join( APP_ROOT, "lib", "*" )].each do | f |
+  require f
+end
 
 class MySketch < Processing::App
-  # load_ruby_library "control_panel"
   load_ruby_library "tuio_client"
   load_java_library "mmj"
   load_ruby_library "midiator"
   
   
   def setup
-    # TODO: get the whole world working with center mode
     rect_mode CENTER
     font = loadFont("monaco-18.vlw")
     textFont(font)

@@ -1,10 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-require 'env_config'
-require 'tuio_event'
-require 'live_midi'
-require 'world'
-
 
 def be_less_than( expected )
   simple_matcher do |given, matcher|

@@ -1,9 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-require 'tuio_event'
-require 'world'
-require 'live_midi'
-
 NextPrev_ID = 0
 Slider_ID = 6
 
