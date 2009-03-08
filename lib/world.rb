@@ -10,6 +10,11 @@ Dir[widgets].each do |w|
   require  w 
 end
 
+compound_widgets = File.join( APP_ROOT, 'widgets', 'compound', '*')
+Dir[compound_widgets].each do |w|
+  require  w 
+end
+
 class World
  
   def initialize( app )

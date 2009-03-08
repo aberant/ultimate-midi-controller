@@ -35,6 +35,10 @@ class MetaWidget < Shape
     
     @app.pop_matrix
   end
+  
+  def update 
+    #TODO: have a meta update all the children
+  end
    
   def my_width
     @widgets.inject(0){ | result, widget | result + widget.width } + PADDING
